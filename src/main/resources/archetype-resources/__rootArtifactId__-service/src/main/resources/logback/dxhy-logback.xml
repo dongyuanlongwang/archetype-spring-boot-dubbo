@@ -1,0 +1,56 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${symbol_dollar}{CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <!--程序执行日志记录-->
+    <appender name="process" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <file>${symbol_dollar}{logFilePath}/${symbol_dollar}{contextFile}/process.log</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${symbol_dollar}{logFilePath}/${symbol_dollar}{contextFile}/process.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!--滚存策略 ，maxHistory为 日志能够保存的条数。-->
+            <maxHistory>${symbol_dollar}{maxHistory}</maxHistory>
+            <!-- 超过10MB时，触发滚动策略 -->
+            <maxFileSize>${symbol_dollar}{maxFileSize}</maxFileSize>
+            <totalSizeCap>${symbol_dollar}{totalSize}</totalSizeCap>
+        </rollingPolicy>
+        <!--临界值过滤器，过滤掉低于指定临界值的日志。当日志级别等于或高于临界值时，过滤器返回NEUTRAL；当日志级别低于临界值时，日志会被拒绝。-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>DEBUG</level>
+        </filter>
+        <encoder>
+            <pattern>${symbol_dollar}{FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <!--程序出现异常需要处理的日志记录，此数据一旦出现意味出现了不可用的危险！！！-->
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${symbol_dollar}{logFilePath}/${symbol_dollar}{contextFile}/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${symbol_dollar}{logFilePath}/${symbol_dollar}{contextFile}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${symbol_dollar}{maxHistory}</maxHistory>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>${symbol_dollar}{maxFileSize}</maxFileSize>
+        </triggeringPolicy>
+        <!--将过滤日志级别设置为error级别，所有error级别的日志交给appender处理，非error级别的日志，被过滤掉。-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>error</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <encoder>
+            <pattern>${symbol_dollar}{FILE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+</included>

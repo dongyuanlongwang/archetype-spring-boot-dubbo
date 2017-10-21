@@ -1,0 +1,41 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <jmxConfigurator/>
+    <!--加载spring的日志配置文件-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <property name="contextName" value="@groupId@-@artifactId@-@version@"/>
+    <!--日志能够保存的条数。-->
+    <property name="maxHistory" value="20"/>
+    <property name="maxFileSize" value="100MB"/>
+    <property name="totalSize" value="2GB"/>
+    <property name="contextFile" value="@groupId@/@artifactId@/@version@"/>
+    <property name="logFilePath" value="@logging.file@"/>
+
+    <contextName>${symbol_dollar}{contextName}</contextName>
+
+    <include resource="logback/dxhy-logback.xml" />
+
+    <!--对dubbo的日志级别配置-->
+    <logger name="com.alibaba.dubbo" level="info"/>
+    <logger name="org.apache.zookeeper.ZooKeeper" level="warn"/>
+    <logger name="org.I0Itec.zkclient" level="warn"/>
+    <logger name="com.alibaba.dubbo.remoting.transport.AbstractClient" level="warn"/>
+    <logger name="com.alibaba.dubbo.rpc" level="warn"/>
+    <logger name="com.alibaba.dubbo.registry.zookeeper.ZookeeperRegistry" level="warn"/>
+
+
+    <logger name="org.springframework" level="info"/>
+    <logger name="com.dxhy" level="debug"/>
+    <logger name="org.apache.http" level="info" />
+
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="process"/>
+        <appender-ref ref="error"/>
+    </root>
+</configuration>

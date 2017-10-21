@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: @deployType@
+  application:
+    name: @project.artifactId@
+
+dubbo:
+  applications:
+    - name: @groupId@-@artifactId@
+      owner: zhaorui
+      organization: @groupId@

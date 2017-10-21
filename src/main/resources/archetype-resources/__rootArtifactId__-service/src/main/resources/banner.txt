@@ -1,0 +1,35 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+
+                     _ooOoo_
+                    o8888888o
+                    88" . "88
+                    (| ^_^ |)
+                    O${symbol_escape}  =  /O
+                 ____/`---'${symbol_escape}____
+               .'  ${symbol_escape}${symbol_escape}|     |//  `.
+              /  ${symbol_escape}${symbol_escape}|||  :  |||//  ${symbol_escape}
+             /  _||||| -:- |||||-  ${symbol_escape}
+             |   | ${symbol_escape}${symbol_escape}${symbol_escape}  -  /// |   |
+             | ${symbol_escape}_|  ''${symbol_escape}---/''  |   |
+             ${symbol_escape}  .-${symbol_escape}__  `-`  ___/-. /
+           ___`. .'  /--.--${symbol_escape}  `. . ___
+         ."" '<  `.___${symbol_escape}_<|>_/___.'  >'"".
+       | | :  `- ${symbol_escape}`.;`${symbol_escape} _ /`;.`/ - ` : | |
+       ${symbol_escape}  ${symbol_escape} `-.   ${symbol_escape}_ __${symbol_escape} /__ _/   .-` /  /
+ ========`-.____`-.___${symbol_escape}_____/___.-`____.-'========
+                      `=---='
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+						. .	 .
+						. . .
+					   .  . .
+					   | | |
+					   | | |
+				       | | |
+				       | | |
+				   <   | | |    >
+				     <        >
+					~~~~~~~~~~
+ 
+       佛祖保佑       永不宕机     永无BUG！

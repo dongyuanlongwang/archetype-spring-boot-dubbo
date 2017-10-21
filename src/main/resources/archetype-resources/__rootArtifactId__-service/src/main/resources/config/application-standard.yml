@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: @project.artifactId@,standard
+
+## 项目信息
+info:
+  build:
+    groupId: @project.groupId@
+    artifact: @project.artifactId@
+    name: @project.name@
+    version: @project.version@
+
+#监控手段！使用spring-boot-admin
+endpoints:
+  logfile:
+    enabled: true
+    sensitive: true
+    externa-file: @logging.file@/@project.groupId@/@project.artifactId@/@project.version@/process.log
+management:
+  security:
+    enabled: false
+
+# mybatis配置
+mybatis:
+  mapper-locations: classpath:mybatis/*/*.xml
+  config-location: classpath:mybatis/mybatis-config.xml

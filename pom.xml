@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>rui.archetype</groupId>
+  <artifactId>archetype-spring-boot-dubbo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>archetype-spring-boot-dubbo</name>
+  <description>为 spring-boot 和 dubbo 结合使用 所购建的骨架项目</description>
+
+  <developers>
+    <developer>
+      <id>zhaorui</id>
+      <name>赵睿</name>
+      <email>zhaorui@ele-cloud.com</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>+8</timezone>
+    </developer>
+  </developers>
+
+  <!-- 迁往 码云， 或者 github -->
+  <scm>
+    <connection>scm:git:git@10.1.20.6:zhaorui/data-mongo.git</connection>
+    <url>http://10.1.20.6:81zhaorui/data-mongo</url>
+  </scm>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>3.0.1</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>3.0.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

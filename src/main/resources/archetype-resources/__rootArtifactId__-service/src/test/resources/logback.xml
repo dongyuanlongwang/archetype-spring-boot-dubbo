@@ -1,0 +1,30 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <!--加载spring的日志配置文件-->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!--对dubbo的日志级别配置-->
+    <logger name="com.alibaba.dubbo" level="info"/>
+    <logger name="org.apache.zookeeper.ZooKeeper" level="warn"/>
+    <logger name="org.I0Itec.zkclient" level="warn"/>
+    <logger name="com.alibaba.dubbo.remoting.transport.AbstractClient" level="warn"/>
+    <logger name="com.alibaba.dubbo.rpc" level="warn"/>
+    <logger name="com.alibaba.dubbo.registry.zookeeper.ZookeeperRegistry" level="warn"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${symbol_dollar}{CONSOLE_LOG_PATTERN}</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="info"/>
+
+
+    <root level="info">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

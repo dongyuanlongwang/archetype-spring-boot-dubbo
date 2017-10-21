@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>pom</packaging>
+
+	<name>${artifactId}</name>
+	<description>
+		${groupId}-${artifactId}
+	</description>
+
+	<modules>
+		<module>${artifactId}-api</module>
+		<module>${artifactId}-service</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+
+		<lombok.version>1.16.18</lombok.version>
+	</properties>
+
+	<organization>
+		<name>大象慧云信息技术有限公司</name>
+		<url>http://www.dxyun.com</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>赵睿</name>
+			<id>zhaorui</id>
+			<email>zhaorui@ele-cloud.com</email>
+			<roles>
+				<role>Developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+
+	<issueManagement>
+		<system>GitLab</system>
+		<url>http://10.1.20.6:81/zhaorui/data-mongo/issues</url>
+	</issueManagement>
+	<scm>
+		<connection>scm:git:git@10.1.20.6:zhaorui/data-mongo.git</connection>
+		<url>http://10.1.20.6:81zhaorui/data-mongo</url>
+	</scm>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<optional>true</optional>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+
+		<!--允许某目录支持 maven的filter-->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
+
+	<!--报道，用于jenkins打包等-->
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>summary</report>
+							<report>index</report>
+							<report>project-team</report>
+							<report>scm</report>
+							<report>issue-tracking</report>
+							<report>modules</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.20</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
+	<!-- 定义项目各阶段所使用的配置信息 -->
+	<profiles>
+		<!-- 开发环境 -->
+		<profile>
+			<id>dev</id>
+			<properties>
+				<deployType>dev</deployType>
+				<logging.file>/home/dxhy/logs/</logging.file>
+			</properties>
+			<!-- 默认激活 -->
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<!-- 测试环境 -->
+		<profile>
+			<id>test</id>
+			<properties>
+				<deployType>test</deployType>
+				<logging.file>/home/dxhy/logs/</logging.file>
+			</properties>
+		</profile>
+		<!-- 预发布环境 -->
+		<profile>
+			<id>preRelease</id>
+			<properties>
+				<deployType>preRelease</deployType>
+				<logging.file>/home/dxhy/logs/</logging.file>
+			</properties>
+		</profile>
+		<!-- 正式环境 -->
+		<profile>
+			<id>product</id>
+			<properties>
+				<deployType>product</deployType>
+				<logging.file>/home/dxhy/logs/</logging.file>
+			</properties>
+		</profile>
+	</profiles>
+
+
+	<!-- 设定主仓库，按设定顺序进行查找。 -->
+	<repositories>
+		<repository>
+			<snapshots>
+			</snapshots>
+			<id>dxhy</id>
+			<name>dxhy Repository</name>
+			<url>http://10.1.20.6:8081/nexus/content/groups/public/</url>
+		</repository>
+	</repositories>
+
+	<!-- 设定插件仓库 -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>dxhy</id>
+			<name>dxhy</name>
+			<url>http://10.1.20.6:8081/nexus/content/groups/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+
+	<distributionManagement>
+		<repository>
+			<id>user-releases</id>
+			<url>http://10.1.20.6:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>user-snapshots</id>
+			<url>http://10.1.20.6:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+</project>
